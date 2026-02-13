@@ -1,0 +1,101 @@
+╔════════════════════════════════════════════════════════════════════════╗
+║           Resume Application System - Enhanced UI                     ║
+║                    NEW FEATURES IMPLEMENTED                            ║
+╚════════════════════════════════════════════════════════════════════════╝
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ SCREEN 1: Initial Choice Menu (NEW)                                 ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+    ============================================================
+    Welcome to Resume Application System
+    ============================================================
+
+    Step 1: Choose Action
+    ------------------------------------------------------------
+
+    What would you like to do?
+      1. Improve the resume (optimize without job posting)
+      2. Apply for jobs (optimize for specific job postings)
+
+    Your choice (1/2): _
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ SCREEN 2: Enhanced Decision Menu (UPDATED)                          ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+    ============================================================
+    SUGGESTED IMPROVEMENTS
+    ============================================================
+
+    HIGH PRIORITY:
+      1. [SKILLS] Add these relevant skills if you have them: docker
+      2. [KEYWORDS] Consider incorporating these keywords: cloud
+      3. [SUMMARY] Add a professional summary
+
+    MEDIUM PRIORITY:
+      4. [EXPERIENCE] Ensure your experience highlights requirements
+      5. [EXPERIENCE] Add quantifiable metrics
+
+    ============================================================
+
+    What would you like to do?
+      1. Accept suggestions and generate resume + cover letter
+      2. Request edits to specific areas
+      3. Improve the new resume (apply suggestions and continue)  ⭐ NEW
+      4. Reject and skip this job
+
+    Your choice (1/2/3/4): _
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ SCREEN 3: Iterative Improvement Flow (NEW)                          ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+    Your choice (1/2/3/4): 3
+
+    Applying current suggestions to resume...
+    ✓ Suggestions applied
+
+    Improved Resume Preview:
+    ============================================================
+    RESUME PREVIEW
+    ============================================================
+
+    SECTIONS:
+
+      [SUMMARY]
+        Experienced professional seeking Software Engineer position
+
+      [SKILLS]
+        Python, JavaScript, React, Node.js, Django, SQL, docker ⭐
+
+    ============================================================
+
+    What additional improvements would you like?
+    (Press Enter twice when done)
+    > Please add AWS and Kubernetes to skills
+    > Quantify my achievements with metrics
+    >
+
+    Generating additional improvement suggestions...
+    ✓ Generated 4 new suggestions
+
+    [Shows new suggestions - user can choose to Improve again or Accept]
+
+╔════════════════════════════════════════════════════════════════════════╗
+║                        IMPLEMENTATION STATUS                           ║
+╠════════════════════════════════════════════════════════════════════════╣
+║                                                                        ║
+║  ✅ Initial choice menu: "Improve Resume" vs "Apply for Jobs"         ║
+║  ✅ Improve mode: Direct enhancement without job posting              ║
+║  ✅ Apply mode: Job-specific optimization                             ║
+║  ✅ 4-option decision menu (Accept/Edit/Improve/Reject)               ║
+║  ✅ Iterative improvement: Apply + continue refining                  ║
+║  ✅ Multiple improvement cycles in single session                     ║
+║  ✅ User can see improved resume before continuing                    ║
+║  ✅ All flows tested and working                                      ║
+║                                                                        ║
+║  📝 Commit: d8a67ba "Add initial choice menu and iterative           ║
+║              improvement option"                                       ║
+║                                                                        ║
+╚════════════════════════════════════════════════════════════════════════╝
