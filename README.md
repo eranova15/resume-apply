@@ -4,32 +4,53 @@ An intelligent system that helps you optimize your resume for specific job oppor
 
 ## Features
 
+- **Two Operation Modes**: Choose between "Improve Resume" or "Apply for Jobs"
 - **Resume Parsing**: Supports PDF, DOCX, and TXT formats
 - **Job Scraping**: Automatically extracts requirements from job posting URLs
 - **Intelligent Suggestions**: AI-powered or rule-based analysis of resume vs. job requirements
 - **Interactive Workflow**: Review, edit, and refine suggestions
+- **Iterative Improvement**: Apply suggestions and continue refining multiple times
 - **PDF Generation**: Creates optimized resume PDFs
 - **Cover Letter Generation**: Automatically generates personalized cover letters
-- **Iterative Refinement**: Request changes and regenerate suggestions
 
 ## Workflow
 
-1. **Input Collection**
+### Option 1: Improve Resume (No Job Posting Required)
+
+1. **Initial Choice**: Select "Improve the resume"
+2. **Upload Resume**: Provide your resume file
+3. **Review Current Resume**: System displays your current resume
+4. **Specify Areas**: Mark or describe areas you want to improve
+5. **Get Suggestions**: System generates improvement suggestions
+6. **Generate Output**: Improved resume PDF is created
+
+### Option 2: Apply for Jobs (Job-Specific Optimization)
+
+1. **Initial Choice**: Select "Apply for jobs"
+2. **Input Collection**
    - Provide your resume (PDF, DOCX, or TXT)
    - Enter job opportunity URLs
 
-2. **Analysis & Suggestions**
+3. **Analysis & Suggestions**
    - System scrapes job listings
    - Analyzes requirements vs. your resume
    - Generates specific, actionable suggestions
    - Shows suggestions grouped by priority
 
-3. **Review & Decision**
+4. **Review & Decision** (Choose one of four options)
    - **Accept**: Generate optimized resume PDF + cover letter
    - **Edit**: Choose resume version (original/new), mark areas for changes, regenerate suggestions
+   - **Improve** ✨ *NEW*: Apply current suggestions, continue improving with additional changes
    - **Reject**: Skip this job opportunity
 
-4. **Output**
+5. **Iterative Refinement** (If "Improve" selected)
+   - Current suggestions are applied to resume
+   - Improved resume is displayed
+   - Request additional improvements
+   - Generate new suggestions based on improved resume
+   - Loop back to decision menu (can repeat multiple times)
+
+6. **Output**
    - Optimized resume PDF tailored to the job
    - Professional cover letter PDF
 
@@ -85,32 +106,49 @@ python src/main.py
 
 Follow the interactive prompts:
 
-1. **Enter resume path**: 
+1. **Choose your mode**:
    ```
-   Resume path: /path/to/your/resume.pdf
-   ```
-
-2. **Enter job URLs** (one per line, press Enter twice when done):
-   ```
-   Job URL 1: https://example.com/job-posting-1
-   Job URL 2: https://example.com/job-posting-2
+   What would you like to do?
+     1. Improve the resume (optimize without job posting)
+     2. Apply for jobs (optimize for specific job postings)
+   
+   Your choice (1/2): 
    ```
 
-3. **Review suggestions** and choose an action:
-   - Type `1` to accept and generate documents
-   - Type `2` to request edits
-   - Type `3` to skip
+2. **For "Improve Resume" mode**:
+   - Enter resume path
+   - System shows current resume
+   - Specify areas to improve
+   - Review and apply suggestions
+   - Get improved resume PDF
+
+3. **For "Apply for Jobs" mode**:
+   - Enter resume path
+   - Enter job URLs (one per line, press Enter twice when done)
+   - Review suggestions and choose:
+     - Type `1` to accept and generate documents
+     - Type `2` to request edits to specific areas
+     - Type `3` to improve the new resume (apply + continue)
+     - Type `4` to skip this job
 
 4. **Find your outputs** in the `output/` directory
 
-### Example Session
+### Example Session (Apply Mode)
 
 ```
 ============================================================
 Welcome to Resume Application System
 ============================================================
 
-Step 1: Input Collection
+Step 1: Choose Action
+------------------------------------------------------------
+What would you like to do?
+  1. Improve the resume (optimize without job posting)
+  2. Apply for jobs (optimize for specific job postings)
+
+Your choice (1/2): 2
+
+Step 2: Resume Input
 ------------------------------------------------------------
 Please enter the path to your resume file:
   Supported formats: PDF, DOCX, TXT
@@ -119,6 +157,8 @@ Resume path: examples/my_resume.pdf
 Parsing your resume...
 ✓ Resume parsed successfully
 
+Step 3: Job Opportunities
+------------------------------------------------------------
 Please enter job posting URLs (one per line)
   Press Enter twice when done, or Ctrl+C to cancel
 Job URL 1: https://example.com/software-engineer-job
@@ -129,14 +169,14 @@ Job URL 2:
 Processing job: https://example.com/software-engineer-job
 ============================================================
 
-Step 2: Scraping job listing...
+Step 4: Scraping job listing...
   Fetching job listing from: https://example.com/software-engineer-job
 ✓ Job listing scraped: Software Engineer
 
-Step 3: Analyzing requirements and generating suggestions...
+Step 5: Analyzing requirements and generating suggestions...
 ✓ Generated 7 suggestions
 
-Step 4: Review suggestions
+Step 6: Review suggestions
 ============================================================
 SUGGESTED IMPROVEMENTS
 ============================================================
@@ -155,9 +195,10 @@ MEDIUM PRIORITY:
 What would you like to do?
   1. Accept suggestions and generate resume + cover letter
   2. Request edits to specific areas
-  3. Reject and skip this job
+  3. Improve the new resume (apply suggestions and continue improving)
+  4. Reject and skip this job
 
-Your choice (1/2/3): 1
+Your choice (1/2/3/4): 1
 
 Applying suggestions to resume...
 

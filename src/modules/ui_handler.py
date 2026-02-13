@@ -13,6 +13,27 @@ class UIHandler:
     def __init__(self):
         self.separator = "=" * 60
     
+    def get_initial_choice(self):
+        """
+        Get user's initial choice: Improve resume or Apply for jobs
+        
+        Returns:
+            str: 'improve' or 'apply'
+        """
+        print("\nWhat would you like to do?")
+        print("  1. Improve the resume (optimize without job posting)")
+        print("  2. Apply for jobs (optimize for specific job postings)")
+        
+        while True:
+            choice = input("\nYour choice (1/2): ").strip()
+            
+            if choice == '1':
+                return 'improve'
+            elif choice == '2':
+                return 'apply'
+            else:
+                print("  Invalid choice. Please enter 1 or 2.")
+    
     def get_resume_path(self):
         """
         Get resume file path from user
@@ -123,26 +144,29 @@ class UIHandler:
         Get user's decision on suggestions
         
         Returns:
-            str: 'accept', 'edit', or 'reject'
+            str: 'accept', 'edit', 'improve', or 'reject'
         """
         print("\nWhat would you like to do?")
         print("  1. Accept suggestions and generate resume + cover letter")
         print("  2. Request edits to specific areas")
-        print("  3. Reject and skip this job")
+        print("  3. Improve the new resume (apply suggestions and continue improving)")
+        print("  4. Reject and skip this job")
         
         while True:
-            choice = input("\nYour choice (1/2/3): ").strip()
+            choice = input("\nYour choice (1/2/3/4): ").strip()
             
             if choice == '1':
                 return 'accept'
             elif choice == '2':
                 return 'edit'
             elif choice == '3':
+                return 'improve'
+            elif choice == '4':
                 confirm = input("  Are you sure you want to skip this job? (y/n): ").strip().lower()
                 if confirm == 'y':
                     return 'reject'
             else:
-                print("  Invalid choice. Please enter 1, 2, or 3.")
+                print("  Invalid choice. Please enter 1, 2, 3, or 4.")
     
     def choose_resume_to_edit(self):
         """
