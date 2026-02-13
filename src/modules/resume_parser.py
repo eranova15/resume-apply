@@ -125,6 +125,7 @@ class ResumeParser:
     def _extract_contact_info(self, lines):
         """Extract contact information (basic implementation)"""
         import re
+        from urllib.parse import urlparse
         
         contact = {
             'email': None,
@@ -145,13 +146,27 @@ class ResumeParser:
             if phone_match and not contact['phone']:
                 contact['phone'] = phone_match.group()
             
-            # LinkedIn
-            if 'linkedin.com' in line.lower() and not contact['linkedin']:
-                contact['linkedin'] = line.strip()
+            # LinkedIn - only match URLs that actually point to linkedin.com
+            if not contact['linkedin']:
+                # Look for linkedin URL pattern
+                linkedin_match = re.search(r'https?://(?:www\.)?linkedin\.com/[\w/-]+', line, re.IGNORECASE)
+                if linkedin_match:
+                    url = linkedin_match.group()
+                    parsed = urlparse(url)
+                    # Verify the domain is actually linkedin.com
+                    if parsed.netloc.lower() in ['linkedin.com', 'www.linkedin.com']:
+                        contact['linkedin'] = url
             
-            # GitHub
-            if 'github.com' in line.lower() and not contact['github']:
-                contact['github'] = line.strip()
+            # GitHub - only match URLs that actually point to github.com
+            if not contact['github']:
+                # Look for github URL pattern
+                github_match = re.search(r'https?://(?:www\.)?github\.com/[\w/-]+', line, re.IGNORECASE)
+                if github_match:
+                    url = github_match.group()
+                    parsed = urlparse(url)
+                    # Verify the domain is actually github.com
+                    if parsed.netloc.lower() in ['github.com', 'www.github.com']:
+                        contact['github'] = url
         
         return contact
     
