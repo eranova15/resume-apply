@@ -1,6 +1,8 @@
 #!/bin/bash
 # Quick start script for Resume Application System
 
+set -e  # Exit on error
+
 echo "Resume Application System - Quick Start"
 echo "========================================"
 echo ""
@@ -9,11 +11,19 @@ echo ""
 if [ ! -d "venv" ]; then
     echo "Creating virtual environment..."
     python3 -m venv venv
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to create virtual environment"
+        exit 1
+    fi
 fi
 
 # Activate virtual environment
 echo "Activating virtual environment..."
 source venv/bin/activate
+if [ $? -ne 0 ]; then
+    echo "Error: Failed to activate virtual environment"
+    exit 1
+fi
 
 # Check if dependencies are installed
 if [ ! -f "venv/installed.flag" ]; then

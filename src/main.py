@@ -6,6 +6,8 @@ Main entry point for the resume optimization application
 import os
 import sys
 from pathlib import Path
+from urllib.parse import urlparse
+import re
 
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent))
@@ -16,6 +18,16 @@ from modules.suggestion_engine import SuggestionEngine
 from modules.resume_generator import ResumeGenerator
 from modules.cover_letter_generator import CoverLetterGenerator
 from modules.ui_handler import UIHandler
+
+
+def sanitize_filename(text, max_length=20):
+    """Convert text to a safe filename"""
+    # Remove special characters
+    safe = re.sub(r'[^\w\s-]', '', text)
+    # Replace spaces with underscores
+    safe = re.sub(r'[\s]+', '_', safe)
+    # Truncate
+    return safe[:max_length].strip('_')
 
 
 def main():
@@ -80,14 +92,18 @@ def main():
                 output_dir = Path("output")
                 output_dir.mkdir(exist_ok=True)
                 
-                resume_filename = f"resume_optimized_{Path(job_url).name[:20]}.pdf"
+                # Create safe filename from job title or URL
+                job_title = job_data.get('title', 'job')
+                safe_name = sanitize_filename(job_title, max_length=30)
+                
+                resume_filename = f"resume_{safe_name}.pdf"
                 resume_path_out = output_dir / resume_filename
                 resume_generator.generate(updated_resume_data, resume_path_out)
                 print(f"✓ Resume saved to: {resume_path_out}")
                 
                 # Generate cover letter
                 print("\nGenerating cover letter...")
-                cover_letter_filename = f"cover_letter_{Path(job_url).name[:20]}.pdf"
+                cover_letter_filename = f"cover_letter_{safe_name}.pdf"
                 cover_letter_path = output_dir / cover_letter_filename
                 cover_letter_generator.generate(
                     updated_resume_data, job_data, cover_letter_path

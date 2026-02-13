@@ -46,7 +46,7 @@ class JobScraper:
                 'location': self._extract_location(soup),
                 'description': self._extract_description(soup),
                 'requirements': self._extract_requirements(soup),
-                'raw_html': str(soup)[:5000]  # Store first 5000 chars for reference
+                'raw_html': ''  # Removed expensive soup conversion
             }
             
             return job_data
